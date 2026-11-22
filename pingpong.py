@@ -3,7 +3,7 @@ window = display.set_mode((900, 800))
 display.set_caption('PingPong')
 timer = time.Clock()
 
-class Sptite(sprite.Sprite):
+class Sprite(sprite.Sprite):
     def __init__(self, image_file, width, height, x, y):
         super().__init__()
         self.image = transform.scale(image.load(image_file),(width, height))
@@ -12,7 +12,8 @@ class Sptite(sprite.Sprite):
         self.rect.y = y
     def reset(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
-        
+
+
 
 game = True
 
