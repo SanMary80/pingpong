@@ -13,7 +13,18 @@ class Sprite(sprite.Sprite):
     def reset(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
-
+class Player(Sprite):
+    def __init__(self, image_file, width, height, x, y, k_up, k_down, speed):
+        super().__init__(image_file, width, height, x, y)
+        self.k_up = k_up
+        self.k_down = k_down
+        self.speed = speed
+    def update(self):
+        keys = key.get_pressed()
+        if keys[self.k_up]:
+            self.rect.y -= self.speed
+        if keys[self.k_down]:
+            self.rect.y += self.speed
 
 game = True
 
