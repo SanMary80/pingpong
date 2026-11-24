@@ -25,7 +25,10 @@ class Player(Sprite):
             self.rect.y -= self.speed
         if keys[self.k_down]:
             self.rect.y += self.speed
-
+class Ball(Sprite):
+    def __init__(self, image_file, width, height, x, y):
+        super().__init__(image_file, width, height, x, y)
+        
 game = True
 
 while game:
