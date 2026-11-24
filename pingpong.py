@@ -26,15 +26,28 @@ class Player(Sprite):
         if keys[self.k_down]:
             self.rect.y += self.speed
 class Ball(Sprite):
-    def __init__(self, image_file, width, height, x, y):
+    def __init__(self, image_file, width, height, x, y, speed):
         super().__init__(image_file, width, height, x, y)
-        
+        self.speed_x = speed
+        self.speed_y = speed
+    def update(self):
+        self.rect.x += self.speed_x
+        self.rect.y += self.speed_y
+
+player_1 = Player('platform_30x200.png', 30, 200, 10, 400, K_w, K_s, 3)
+player_2 = Player('platform_30x200.png', 30, 200, 800, 400, K_UP, K_DOWN, 3)
+ball = Ball('ball_100x100.png', 100, 100, 400, 400, 4)
 game = True
+platforms = sprite.Group(player_1, player_2)
 
 while game:
+    window.fill((50, 200, 250))
     for e in event.get():
         if e.type ==QUIT:
             game = False
-
+    platforms.update()
+    ball.update()
+    platforms.draw(window)
+    ball.reset()
     display.update()
     timer.tick(60)
